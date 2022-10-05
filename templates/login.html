@@ -8,11 +8,21 @@
         <div class="container">
 		<h1>Login</h1>
         <!-- This is where our form will go. -->
-            <form method="POST" action="{{ url_for('login') }}">
+            <form method="POST" action="{{ url_for('login') }}" novalidate>
                 {{ form.csrf_token }}
-                {{ form.username.label }} {{ form.username(size=20) }}
-                {{ form.password.label }} {{ form.password(size=20) }}
-                <input type="submit" value="Go">
+                <p>
+                    {{ form.username.label }} {{ form.username(size=25) }}
+                    {% for err in form.username.errors %}
+                    <span style="color:red">{{ err }}</span>
+                    {% endfor %}
+                </p>
+                <p>
+                   {{ form.password.label }} {{ form.password(size=25) }}
+                    {% for err in form.password.errors %}
+                    <span style="color:red">{{ err }}</span>
+                    {% endfor %}
+                </p>
+                {{ form.submit }}
             </form>
         </div>
 	</body>
